@@ -35,6 +35,24 @@ android_app {
     ],
 }
 
+android_test {
+    name: "CalendarTests",
+
+    srcs: [
+        "tests/**/*.java",
+    ],
+
+    manifest: "tests/AndroidManifest.xml",
+
+    libs: [
+        "android.test.runner",
+    ],
+
+    certificate: "platform",
+
+    instrumentation_for: "PortalCalendar",
+}
+
 prebuilt_etc {
     name: "com.portal.calendar_whitelist",
     product_specific: true,
