@@ -1,6 +1,7 @@
 package com.portal.calendar.MonthDay;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,8 @@ public class MonthDayAdapter extends RecyclerView.Adapter<MonthDayViewHolder> {
     @NonNull
     @Override
     public MonthDayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.i("PORTAL", "onCreateViewHolder");
+
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.month_day_cell, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
@@ -41,6 +44,8 @@ public class MonthDayAdapter extends RecyclerView.Adapter<MonthDayViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MonthDayViewHolder holder, int position) {
+        Log.i("PORTAL", "onBindViewHolder "+position);
+
         holder.dayOfMonth_txt.setTextColor(context.getResources().getColor(R.color.text, null));
 
         if(CalendarUtils.selectedDate.getMonth() == CalendarUtils.today.getMonth() &&
