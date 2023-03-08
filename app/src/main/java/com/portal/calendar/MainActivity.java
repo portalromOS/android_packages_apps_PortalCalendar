@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements MonthDayAdapter.O
         calendarRecyclerView.setOnTouchListener(setupViewSwipeListener());
         //new NotificationHelper(this, null).deleteAllChannels();
         updateUI();
-
     }
     private OnSwipeTouchListener setupViewSwipeListener(){
         return new OnSwipeTouchListener(this, OnSwipeTouchListener.swipeDirection.HORIZONTAL) {

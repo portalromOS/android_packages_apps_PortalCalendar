@@ -17,10 +17,13 @@ import com.portal.calendar.EventEditActivity;
 import com.portal.calendar.Events.CalendarEventModel;
 import com.portal.calendar.Events.CalendarEventSQL;
 import com.portal.calendar.R;
+import com.portal.calendar.Utils.CalendarUtils;
 
 public class AlarmReceiver extends BroadcastReceiver {
     private Context context;
-    public static String ALARM_ITEM_NOTIFICATION = "AlarmEvent";
+    public static String ALARM_ITEM_NOTIFICATION = "ALARM_ITEM_NOTIFICATION";
+    public static String ALARM_ITEM_NOTIFICATION_EVENT_ID = "ALARM_ITEM_NOTIFICATION_EVENT_ID";
+
 
     //Recebo o evento do sheduler qd este é disparado no dia e hora destinado
     @Override
@@ -28,6 +31,19 @@ public class AlarmReceiver extends BroadcastReceiver {
         this.context = context;
 
         AlarmItem alarmItem = getAlarm(intent);
+
+        //Para quando o serializable nao funciona
+        if(alarmItem == null){
+            int eventId = intent.getIntExtra(ALARM_ITEM_NOTIFICATION_EVENT_ID, -1);
+
+            if(eventId != -1){
+                CalendarEventSQL sqlHelper = new CalendarEventSQL(context);
+                CalendarEventModel model = sqlHelper.getById(eventId);
+                if(model != null)
+                    alarmItem = new AlarmItem((int)model.id, model.name, model.detail, model.alarmSoundName);
+            }
+        }
+
 
         if(alarmItem != null){
 
@@ -65,14 +81,18 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         if(intent != null){
             Bundle b = intent.getExtras();
-
             if(b != null){
+                /*
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
                     alarmItem =  b.getSerializable(ALARM_ITEM_NOTIFICATION, AlarmItem.class) ;
                 }else{
                     alarmItem =  (AlarmItem) b.getSerializable(ALARM_ITEM_NOTIFICATION) ;
                 }
+                */
+                alarmItem =  (AlarmItem) b.getSerializable(ALARM_ITEM_NOTIFICATION) ;
             }
+
+
         }
         return alarmItem;
     }

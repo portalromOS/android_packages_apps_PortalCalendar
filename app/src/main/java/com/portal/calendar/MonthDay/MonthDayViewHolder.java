@@ -78,8 +78,13 @@ public class MonthDayViewHolder extends RecyclerView.ViewHolder implements  View
         if(model.color != null && !model.color.equals("")){
             colorId = CalendarUtils.getColorIdByName(context, model.color);
         }
+        if(colorId > 0){
+            event.setBackgroundColor(context.getResources().getColor(colorId, null));
+        }
+        else{
+            event.setBackgroundColor(context.getResources().getColor(R.color.highLight, null));
 
-        event.setBackgroundColor(context.getResources().getColor(colorId, null));
+        }
 
         LinearLayout.LayoutParams eventLayoutParams;
 

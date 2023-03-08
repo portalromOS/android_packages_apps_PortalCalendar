@@ -94,8 +94,6 @@ public class EventEditActivity extends AppCompatActivity implements DatePickerDi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_edit);
 
-
-
         setupGui();
 
         sqlHelper = new CalendarEventSQL(this);
@@ -126,13 +124,14 @@ public class EventEditActivity extends AppCompatActivity implements DatePickerDi
         }
 
         permissionResultLauncher = registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), new ActivityResultCallback<Map<String, Boolean>>() {
-            @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
             @Override
             public void onActivityResult(Map<String, Boolean> result) {
-
+                hasPermissionNotification = true;
+                /*
                 if(result.get(Manifest.permission.POST_NOTIFICATIONS)!=null){
                     hasPermissionNotification = result.get(Manifest.permission.POST_NOTIFICATIONS);
                 }
+                */
                 updateUI();
             }
         });
@@ -315,8 +314,10 @@ public class EventEditActivity extends AppCompatActivity implements DatePickerDi
             if(result>0){
                 model.id = result;
                 if(model.alarm >= 0){
+
                     AlarmItem ai = new AlarmItem((int)model.id, model.name, model.detail, model.alarmSoundName);
                     AlarmScheduler as = new AlarmScheduler(this);
+
                     if(as.validTime(model.getAlarmDateTime()) || inNotificationDebug){
                         as.schedule(ai, model.getAlarmDateTime());
                         CalendarUtils.showMsg(this, R.string.event_form_alarmAdded);
@@ -411,11 +412,20 @@ public class EventEditActivity extends AppCompatActivity implements DatePickerDi
 
     private void requestPermission(){
         ArrayList<String> permissionRequest = new ArrayList<>();
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             hasPermissionNotification = (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED);
             if(!hasPermissionNotification)
                 permissionRequest.add(Manifest.permission.POST_NOTIFICATIONS);
         }
+        */
+
+        hasPermissionNotification = (ContextCompat.checkSelfPermission(this, Manifest.permission.SCHEDULE_EXACT_ALARM) == PackageManager.PERMISSION_GRANTED);
+        if(!hasPermissionNotification)
+            permissionRequest.add(Manifest.permission.SCHEDULE_EXACT_ALARM);
+
+
+        hasPermissionNotification = true;
 
         if(!permissionRequest.isEmpty()){
             permissionResultLauncher.launch(permissionRequest.toArray(new String[0]));
