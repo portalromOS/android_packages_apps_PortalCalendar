@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements MonthDayAdapter.O
     private TextView monthYearText;
     private RecyclerView calendarRecyclerView;
 
+    private MonthDayAdapter calendarAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,22 @@ public class MainActivity extends AppCompatActivity implements MonthDayAdapter.O
         calendarRecyclerView = findViewById(R.id.calendarRecyclerView);
         calendarRecyclerView.setOnTouchListener(setupViewSwipeListener());
         //new NotificationHelper(this, null).deleteAllChannels();
+
+        calendarAdapter = new MonthDayAdapter(new ArrayList<Integer>(), this, this);
+
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
+        calendarRecyclerView.setLayoutManager(layoutManager);
+        //definir o layout a ser aplicado na recicledView
+        /*RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };*/
+
+        //After Layout
+        calendarRecyclerView.setAdapter(calendarAdapter);
+
         updateUI();
     }
     private OnSwipeTouchListener setupViewSwipeListener(){
@@ -48,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements MonthDayAdapter.O
         };
     }
     private void updateUI(){
-        setMonthViewTxt();
         setWeekDays();
+        updateDateTxt();
     }
 
     private void setWeekDays() {
@@ -65,34 +83,23 @@ public class MainActivity extends AppCompatActivity implements MonthDayAdapter.O
 
 
 
-    private void setMonthViewTxt() {
+    private void updateDateTxt() {
         monthYearText.setText(CalendarUtils.monthYearFromDate(getResources(), CalendarUtils.selectedDate));
+
         ArrayList<Integer> daysInMonth = CalendarUtils.daysInMonthArray(CalendarUtils.selectedDate);
-
-        MonthDayAdapter calendarAdapter = new MonthDayAdapter(daysInMonth, this, this);
-
-        //definir o layout a ser aplicado na recicledView
-        /*RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7){
-            @Override
-            public boolean canScrollVertically() {
-                return false;
-            }
-        };*/
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 7);
-
-        calendarRecyclerView.setLayoutManager(layoutManager);
-        calendarRecyclerView.setAdapter(calendarAdapter);
+        Log.i("PORTAL", "daysInMonth count - "+daysInMonth.size());
+        calendarAdapter.updateData(daysInMonth);
     }
 
 
 
     public void prevMonthAction(View view) {
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.minusMonths(1);
-        setMonthViewTxt();
+        updateDateTxt();
     }
     public void nextMonthAction(View view) {
         CalendarUtils.selectedDate = CalendarUtils.selectedDate.plusMonths(1);
-        setMonthViewTxt();
+        updateDateTxt();
     }
     public void monthYearAction(View view) {
 

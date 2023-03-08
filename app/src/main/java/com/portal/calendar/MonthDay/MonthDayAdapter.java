@@ -15,13 +15,18 @@ import java.util.ArrayList;
 
 public class MonthDayAdapter extends RecyclerView.Adapter<MonthDayViewHolder> {
     private Context context;
-    private final ArrayList<Integer> daysOfMonth;
+    private ArrayList<Integer> daysOfMonth;
     private final OnItemListener onItemListener;
 
     public MonthDayAdapter(ArrayList<Integer> daysOfMonth, OnItemListener onItemListener, Context context){
         this.daysOfMonth = daysOfMonth;
         this.onItemListener = onItemListener;
         this.context = context;
+    }
+
+    public void updateData(ArrayList<Integer> daysOfMonth) {
+        this.daysOfMonth = daysOfMonth;
+        notifyDataSetChanged();
     }
 
     @NonNull
