@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text">#FF5d596c</color>
+    <color name="textSecundary">#FFa5a3ae</color>
+    <color name="textLight">#FFcfd3ec</color>
+
+    <color name="bg">#FFf8f7fa</color>
+    <color name="bgModal">#FFFFFFFF</color>
+    <color name="shadow">#AA000000</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="highLight">#FF7367F0</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="button">#575C7A</color>
+    <color name="buttonLight">#FF7367F0</color>
+
+    <color name="debug">#FFFF0000</color>
+
+    <color name="white50">#80FFFFFF</color>
+
+    <color name="event01">#FFA38856</color>
+    <color name="event02">#FFF0C473</color>
+    <color name="event03">#FF90A336</color>
+    <color name="event04">#FFD5F05B</color>
+    <color name="event05">#FFC173F0</color>
+    <color name="event06">#FF5B9DF0</color>
+    <color name="event07">#FF2E63A3</color>
+    <color name="event08">#FFF07E73</color>
+    <color name="event09">#FFF0B343</color>
+</resources>

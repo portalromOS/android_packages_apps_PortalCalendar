@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    tools:context=".DayViewActivity"
+    android:paddingHorizontal="8dp"
+    >
+
+    <!-- Header-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/card"
+        android:elevation="10dp"
+        android:theme="@style/Cards"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!-- Main Actions-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainHeader_mainAction"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <Button
+                android:id="@+id/close"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:onClick="closeDayAction"
+                android:text="@string/close"
+                android:textColor="@color/text"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/monthYear"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="January 2022"
+                android:theme="@style/MainHeaderTitle"
+                app:layout_constraintEnd_toStartOf="@+id/add"
+                app:layout_constraintStart_toEndOf="@id/close"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:onClick="addEventAction"
+                android:text="@string/add"
+                android:textSize="20dp"
+                android:textColor="@color/highLight"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <!-- Day Actions-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainHeader_dayAction"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mainHeader_mainAction">
+
+            <Button
+
+                android:id="@+id/mainHeader_dayAction_prev"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:onClick="prevDayAction"
+                android:text="@string/main_left"
+                android:textColor="@color/text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/day"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Monday 20"
+                android:theme="@style/MainHeaderSubtitle"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/mainHeader_dayAction_next"
+                app:layout_constraintStart_toEndOf="@+id/mainHeader_dayAction_prev" />
+
+            <Button
+                android:id="@+id/mainHeader_dayAction_next"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:background="@color/transparent"
+                android:onClick="nextDayAction"
+                android:text="@string/main_right"
+                android:textColor="@color/text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/calendarEventListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainHeader" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

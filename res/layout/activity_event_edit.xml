@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    tools:context=".EventEditActivity"
+    android:paddingHorizontal="8dp"
+    >
+
+    <!-- Header-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/card"
+        android:elevation="10dp"
+        android:theme="@style/Cards"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <Button
+            android:id="@+id/close"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            android:onClick="closeEventAction"
+            android:text="@string/close"
+            android:textColor="@color/text"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/monthYear"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@string/event_title"
+            android:theme="@style/MainHeaderTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/close"
+            app:layout_constraintEnd_toStartOf="@+id/deleteIconBtn"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/deleteIconBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="deleteEventAction"
+            android:background="@android:color/transparent"
+            android:tint="@color/highLight"
+            android:padding="8dp"
+            app:srcCompat="@drawable/baseline_delete_24" />
+
+        <ImageButton
+            android:id="@+id/saveIconBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="saveEventAction"
+            android:background="@android:color/transparent"
+            android:tint="@color/highLight"
+            android:padding="8dp"
+            app:srcCompat="@drawable/baseline_save_24" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="16dp"
+        android:background="@color/transparent"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/mainHeader"
+        >
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formDivName"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0">
+
+            <TextView
+                android:id="@+id/eventNameLabel"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:text="@string/event_form_name"
+                android:theme="@style/FormInlineLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/eventName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+
+                android:theme="@style/FormInput"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintStart_toEndOf="@+id/eventNameLabel"
+
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formDivDate"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0">
+
+            <TextView
+                android:id="@+id/eventDateLabel"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:text="@string/event_form_date"
+                android:theme="@style/FormInlineLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+            <TextView
+                android:id="@+id/eventDate"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+
+                android:onClick="popUpDatePickerAction"
+                android:theme="@style/FormInputPicker"
+                app:layout_constraintEnd_toStartOf="@id/eventTime"
+                app:layout_constraintStart_toEndOf="@+id/eventDateLabel" />
+
+            <TextView
+                android:id="@+id/eventTime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+
+                android:onClick="popUpTimePickerAction"
+                android:theme="@style/FormInputPicker"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/eventDate"
+                android:visibility="gone"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formDivDateEnd"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0"
+            >
+
+            <TextView
+                android:id="@+id/eventDateEndLabel"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:text="@string/event_form_date_time_end"
+                android:theme="@style/FormInlineLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+            <TextView
+                android:id="@+id/eventDateEnd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+
+                android:onClick="popUpDatePickerAction"
+                android:theme="@style/FormInputPicker"
+                app:layout_constraintEnd_toStartOf="@id/eventTimeEnd"
+                app:layout_constraintStart_toEndOf="@+id/eventDateEndLabel" />
+
+            <TextView
+                android:id="@+id/eventTimeEnd"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+
+                android:onClick="popUpTimePickerAction"
+                android:theme="@style/FormInputPicker"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/eventDateEnd" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formDivTime"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0">
+
+            <TextView
+                android:id="@+id/eventTimeLabel"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:text="@string/event_form_time"
+
+                android:theme="@style/FormInlineLabel"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/eventTime"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+
+                android:onClick="popUpTimePickerAction"
+                android:theme="@style/FormInputPicker"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/eventTimeLabel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formDivAllDay"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0">
+
+            <TextView
+                android:id="@+id/eventAllDayLabel"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:text="@string/event_form_all_day"
+                android:theme="@style/FormInlineLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+
+                />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/eventAllDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:theme="@style/Switch"
+                android:thumb="@drawable/switch_thumb"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/eventDetailLabel"
+                app:layout_constraintTop_toTopOf="parent"
+                app:track="@drawable/switch_track"
+                tools:ignore="TouchTargetSizeCheck"
+
+                android:checked="true"
+                />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formDivDetail"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0">
+
+            <TextView
+                android:id="@+id/eventDetailLabel"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:text="@string/event_form_detail"
+                android:gravity="top"
+                android:theme="@style/FormInlineLabel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/eventDetail"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:gravity="top"
+                android:theme="@style/FormInput"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/eventDetailLabel"
+                android:inputType="text|textMultiLine"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formDivAlarm"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0">
+
+            <TextView
+                android:id="@+id/eventAlarmLabel"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:text="@string/event_form_notification"
+
+                android:theme="@style/FormInlineLabel"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/alarmPermissionRequestBtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:text="@string/updatePermissions"
+                android:textColor="@color/highLight"
+                android:background="@color/bgModal"
+                android:onClick="updatePermissionsAction"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/eventAlarmLabel"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <Spinner
+                android:id="@+id/eventAlarm"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:spinnerMode="dropdown"
+                android:theme="@style/FormInput"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/eventAlarmLabel"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formDivAlarmSound"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0"
+            >
+
+            <TextView
+                android:id="@+id/eventAlarmSoundLabel"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:text="@string/event_form_sound"
+
+                android:theme="@style/FormInlineLabel"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/eventAlarmSound"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:spinnerMode="dropdown"
+                android:theme="@style/FormInput"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/playSoundIconBtn"
+                app:layout_constraintStart_toEndOf="@+id/eventAlarmSoundLabel"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/playSoundIconBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:onClick="toggleSoundAction"
+                android:background="@android:color/transparent"
+                android:tint="@color/highLight"
+                android:padding="8dp"
+                app:srcCompat="@drawable/baseline_play_circle_outline_24"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/formDivColor"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0"
+            >
+
+            <TextView
+                android:id="@+id/eventColorLabel"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:text="@string/event_form_color"
+
+                android:theme="@style/FormInlineLabel"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/eventColor"
+
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:spinnerMode="dropdown"
+                android:theme="@style/FormInput"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_selector"
+        android:gravity="center"
+        android:onClick="saveEventAction"
+        android:text="@string/save"
+        android:theme="@style/ButtonStyle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">Calendar</string>
+
+    <string name="main_left"><![CDATA[<]]></string>
+    <string name="main_right"><![CDATA[>]]></string>
+    <string name="close">X</string>
+    <string name="add">+</string>
+    <string name="save">Save</string>
+    <string name="none">None</string>
+    <string name="updatePermissions">Update Permissions</string>
+    <string name="today">Today</string>
+
+    <string name="event_title">Event</string>
+    <string name="event_form_name">Name</string>
+
+    <string name="dayView_pastStart">Past</string>
+    <string name="dayView_futureEnd">Future</string>
+
+    <string name="event_form_all_day">All Day</string>
+    <string name="event_form_date_time">Date/Time</string>
+    <string name="event_form_date">Date</string>
+    <string name="event_form_time">Time</string>
+    <string name="event_form_date_time_end">Until</string>
+    <string name="event_form_alarm">Alarm</string>
+    <string name="event_form_notification">Notification</string>
+    <string name="event_form_sound">Sound</string>
+    <string name="event_form_color">Color</string>
+    <string name="event_form_detail">Details</string>
+    <string name="event_form_invalidFields">There are invalid fields</string>
+    <string name="event_form_alarmAdded">Alarm added</string>
+    <string name="event_form_alarmOutdated">Alarm is outdated</string>
+
+    <string name="sql_calendarEvents_add">There was an error adding the event</string>
+    <string name="sql_calendarEvents_update">There was an error updating the event</string>
+    <string name="sql_calendarEvents_remove">There was an error removing the event</string>
+
+    <string name="event_model_invalid_date">Invalid date</string>
+    <string name="event_model_invalid_time">Invalid time</string>
+    <string name="event_model_invalid_end">End of the event before the start</string>
+
+
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string-array name="months_sm">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+
+    <string-array name="weekDays">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string-array name="weekDays_sm">
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thr</item>
+        <item>Fri</item>
+        <item>Sat</item>
+        <item>Sun</item>
+    </string-array>
+
+    <string name="eventAlarms_N1">None</string>
+    <string name="eventAlarms_0">Exact</string>
+    <string name="eventAlarms_1">1h Early</string>
+    <string name="eventAlarms_8">8h Early</string>
+    <string name="eventAlarms_24">1 day Early</string>
+
+    <string name="alarmSound_">None</string>
+    <string name="alarmSound_alarm_clock_beep">Clock beep</string>
+    <string name="alarmSound_data_scaner">Data scanner</string>
+    <string name="alarmSound_rooster_crowing_in_the_morning">Rooster in the morning</string>
+</resources>
