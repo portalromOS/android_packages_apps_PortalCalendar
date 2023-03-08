@@ -1,16 +1,17 @@
 android_app {
     name: "PortalCalendar",
-    resource_dirs: ["res"],
-    sdk_version: "current",
     overrides: ["Calendar"],
-    optimize: {
-        proguard_flags_files: ["proguard.flags"],
-    },
+
+    resource_dirs: ["app/src/main/res"],
+
     srcs: [
-        "src/**/*.java",
-        "gen/**/*.java",
+        "app/src/main/java/**/*.java"
     ],
+
+    manifest: "app/src/main/AndroidManifest.xml",
+
     product_specific: true,
+
     static_libs: [
         "androidx.annotation_annotation",
         "androidx.collection_collection",
@@ -30,9 +31,39 @@ android_app {
         "androidx.appcompat_appcompat"
         
     ],
+
+    optimize: {
+        proguard_flags_files: ["app/proguard-rules.pro"],
+    },
+
+    sdk_version: "current",
+
+    aaptflags: [
+        "--rename-manifest-package",
+        "com.portal.calendar",
+    ],
+
     required: [
         "com.portal.calendar_whitelist"
     ],
+}
+
+android_test {
+    name: "CalendarTests",
+
+    srcs: [
+        "app/src/test/java/**/*.java"
+    ],
+
+    manifest: "app/src/test/AndroidManifest.xml",
+
+    libs: [
+        "android.test.runner",
+    ],
+
+    certificate: "platform",
+
+    instrumentation_for: "PortalCalendar",
 }
 
 prebuilt_etc {
