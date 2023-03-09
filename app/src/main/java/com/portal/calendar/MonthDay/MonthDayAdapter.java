@@ -38,7 +38,7 @@ public class MonthDayAdapter extends RecyclerView.Adapter<MonthDayViewHolder> {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.month_day_cell, parent, false);
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-        layoutParams.height = 100;//(int) (parent.getHeight()*0.166666666);
+        //layoutParams.height = 100;//(int) (parent.getHeight()*0.166666666);
         return new MonthDayViewHolder(view, onItemListener);
     }
 
